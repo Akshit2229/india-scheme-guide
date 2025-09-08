@@ -1,0 +1,189 @@
+{
+  "schemes": [
+    {
+      "id": "pm-kisan",
+      "title": "PM-KISAN Samman Nidhi Yojana",
+      "category": "Agriculture",
+      "description": "Financial assistance of Rs. 6000 per year to small and marginal farmers",
+      "fullDescription": "The Pradhan Mantri Kisan Samman Nidhi (PM-KISAN) is a Central Sector Scheme launched on 1st December 2018. Under this scheme, financial assistance of Rs. 6000 per year is provided to small and marginal farmers in three equal instalments of Rs. 2000 each every four months.",
+      "eligibility": [
+        "Small and marginal farmers with cultivable land up to 2 hectares",
+        "Farmers who own cultivable land as per land records of the concerned State/UT",
+        "Land should be owned by individual farmer families"
+      ],
+      "benefits": "Rs. 6000 per year in three instalments of Rs. 2000 each",
+      "documents": [
+        "Aadhaar Card",
+        "Bank Account Details", 
+        "Land Records",
+        "Mobile Number"
+      ],
+      "applicationProcess": "Online registration through PM-KISAN portal or through Common Service Centers",
+      "department": "Ministry of Agriculture & Farmers Welfare",
+      "launchYear": 2018,
+      "status": "Active"
+    },
+    {
+      "id": "ayushman-bharat",
+      "title": "Ayushman Bharat - Pradhan Mantri Jan Arogya Yojana",
+      "category": "Healthcare", 
+      "description": "Health insurance coverage of Rs. 5 lakhs per family per year",
+      "fullDescription": "Ayushman Bharat is the flagship scheme of Government of India to achieve the vision of Universal Health Coverage. The scheme provides health cover of Rs. 5 lakhs per family per year for secondary and tertiary care hospitalization.",
+      "eligibility": [
+        "Families identified through Socio Economic Caste Census (SECC) 2011",
+        "Families listed in SECC database under deprivation categories",
+        "Occupational category families in rural and urban areas"
+      ],
+      "benefits": "Health insurance coverage up to Rs. 5 lakhs per family per year",
+      "documents": [
+        "Aadhaar Card",
+        "Ration Card",
+        "Mobile Number",
+        "Address Proof"
+      ],
+      "applicationProcess": "Beneficiaries can get their eligibility checked and cards made at hospitals or through Common Service Centers",
+      "department": "Ministry of Health and Family Welfare",
+      "launchYear": 2018,
+      "status": "Active"
+    },
+    {
+      "id": "beti-bachao-beti-padhao",
+      "title": "Beti Bachao Beti Padhao Scheme",
+      "category": "Women & Child",
+      "description": "Initiative to improve child sex ratio and enable education of girl children",
+      "fullDescription": "Beti Bachao Beti Padhao is a social campaign of the Government of India that aims to address the declining child sex ratio and related issues of women empowerment over a life-cycle continuum.",
+      "eligibility": [
+        "Girl child born on or after 22nd January 2015",
+        "Account can be opened until girl child attains the age of 10 years",
+        "Only one account per girl child allowed"
+      ],
+      "benefits": "Various financial incentives and educational support for girl child development",
+      "documents": [
+        "Birth Certificate of Girl Child",
+        "Aadhaar Card of Parents/Guardian",
+        "Address Proof",
+        "Bank Account Details"
+      ],
+      "applicationProcess": "Applications can be made through banks, post offices or online portals",
+      "department": "Ministry of Women and Child Development",
+      "launchYear": 2015,
+      "status": "Active"
+    },
+    {
+      "id": "pmay-urban",
+      "title": "Pradhan Mantri Awas Yojana - Urban",
+      "category": "Housing",
+      "description": "Affordable housing scheme for urban poor and middle-income groups",
+      "fullDescription": "PMAY-U aims to provide pucca houses to all eligible families in urban areas by 2022. The scheme provides central assistance to implementing agencies through States/UTs for providing houses to eligible beneficiaries.",
+      "eligibility": [
+        "Families without pucca house in their name",
+        "Adult women member should be co-owner of the house",
+        "Household income limits as per different categories"
+      ],
+      "benefits": "Financial assistance up to Rs. 2.67 lakhs for house construction/purchase",
+      "documents": [
+        "Aadhaar Card",
+        "Income Certificate", 
+        "Bank Account Details",
+        "Property Documents"
+      ],
+      "applicationProcess": "Online application through PMAY-U portal or offline through implementing agencies",
+      "department": "Ministry of Housing and Urban Affairs",
+      "launchYear": 2015,
+      "status": "Active"
+    },
+    {
+      "id": "mnrega",
+      "title": "Mahatma Gandhi National Rural Employment Guarantee Act",
+      "category": "Employment",
+      "description": "100 days guaranteed employment for rural households",
+      "fullDescription": "MGNREGA guarantees 100 days of wage employment in a financial year to a rural household whose adult members volunteer to do unskilled manual work.",
+      "eligibility": [
+        "Rural households",
+        "Adult members willing to do unskilled manual work",
+        "Job card holders"
+      ],
+      "benefits": "100 days guaranteed employment with minimum wages",
+      "documents": [
+        "Aadhaar Card",
+        "Bank Account Details",
+        "Address Proof",
+        "Job Card Application"
+      ],
+      "applicationProcess": "Apply through Gram Panchayat or MGNREGA portal",
+      "department": "Ministry of Rural Development",
+      "launchYear": 2005,
+      "status": "Active"
+    },
+    {
+      "id": "atal-pension-yojana",
+      "title": "Atal Pension Yojana",
+      "category": "Senior Citizens",
+      "description": "Pension scheme for unorganized sector workers",
+      "fullDescription": "APY is a pension scheme for citizens of India focused on the unorganised sector workers. Under APY, guaranteed minimum pension of Rs. 1000 or Rs. 2000 or Rs. 3000 or Rs. 4000 or Rs. 5000 per month will be given at the age of 60 years.",
+      "eligibility": [
+        "Age between 18-40 years",
+        "Bank account holder",
+        "Indian citizen",
+        "Not a member of any statutory social security scheme"
+      ],
+      "benefits": "Guaranteed pension from Rs. 1000 to Rs. 5000 per month after 60 years",
+      "documents": [
+        "Aadhaar Card",
+        "Bank Account Details",
+        "Mobile Number",
+        "Nominee Details"
+      ],
+      "applicationProcess": "Apply through banks or online portals",
+      "department": "Ministry of Finance",
+      "launchYear": 2015,
+      "status": "Active"
+    },
+    {
+      "id": "sarva-shiksha-abhiyan",
+      "title": "Sarva Shiksha Abhiyan",
+      "category": "Education",
+      "description": "Universal elementary education programme",
+      "fullDescription": "Sarva Shiksha Abhiyan is India's flagship programme for universalization of elementary education in a mission mode. It covers the entire country and addresses the needs of 192 million children in 1.1 million habitations.",
+      "eligibility": [
+        "Children aged 6-14 years",
+        "All children irrespective of caste, creed, religion or gender",
+        "Special focus on girl children and disadvantaged groups"
+      ],
+      "benefits": "Free and compulsory education, textbooks, uniforms, and midday meals",
+      "documents": [
+        "Birth Certificate",
+        "Aadhaar Card",
+        "Address Proof",
+        "Caste Certificate (if applicable)"
+      ],
+      "applicationProcess": "Enrollment through local schools or education department",
+      "department": "Ministry of Education",
+      "launchYear": 2001,
+      "status": "Active"
+    },
+    {
+      "id": "accessible-india",
+      "title": "Accessible India Campaign",
+      "category": "Disability",
+      "description": "Making India accessible for persons with disabilities",
+      "fullDescription": "The Accessible India Campaign (Sugamya Bharat Abhiyan) is a nationwide flagship campaign for achieving universal accessibility for persons with disabilities.",
+      "eligibility": [
+        "Persons with disabilities",
+        "Organizations working for persons with disabilities",
+        "Public and private institutions"
+      ],
+      "benefits": "Accessibility improvements in built environment, transportation, and ICT ecosystem",
+      "documents": [
+        "Disability Certificate",
+        "Aadhaar Card",
+        "Address Proof",
+        "Medical Reports"
+      ],
+      "applicationProcess": "Applications through disability welfare departments or online portals",
+      "department": "Ministry of Social Justice and Empowerment",
+      "launchYear": 2015,
+      "status": "Active"
+    }
+  ]
+}

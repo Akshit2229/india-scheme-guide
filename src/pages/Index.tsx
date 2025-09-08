@@ -1,11 +1,39 @@
+import { useState } from "react";
 import Header from "@/components/Header";
 import HeroSection from "@/components/HeroSection";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Users, FileText, MapPin, CheckCircle, ArrowRight, Phone, Mail, Clock } from "lucide-react";
+import { useToast } from "@/hooks/use-toast";
 
 const Index = () => {
+  const { toast } = useToast();
+  const [contactForm, setContactForm] = useState({
+    name: "",
+    phone: "",
+    email: "",
+    message: ""
+  });
+
+  const handleContactSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!contactForm.name || !contactForm.email || !contactForm.message) {
+      toast({
+        title: "Missing Information",
+        description: "Please fill in all required fields.",
+        variant: "destructive"
+      });
+      return;
+    }
+    
+    toast({
+      title: "Message Sent Successfully",
+      description: "Thank you for contacting us. We'll get back to you soon.",
+    });
+    
+    setContactForm({ name: "", phone: "", email: "", message: "" });
+  };
   const categories = [
     { name: "Agriculture", count: 245, icon: "🌾" },
     { name: "Education", count: 189, icon: "📚" },
@@ -44,7 +72,7 @@ const Index = () => {
       <HeroSection />
       
       {/* How it Works Section */}
-      <section className="py-16 bg-white">
+      <section id="how-it-works" className="py-16 bg-white">
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
             <h2 className="text-3xl lg:text-4xl font-bold text-primary mb-4">
@@ -82,7 +110,10 @@ const Index = () => {
           </div>
           
           <div className="text-center mt-12">
-            <Button className="bg-primary hover:bg-primary-hover text-white px-8 py-3 text-lg">
+            <Button 
+              onClick={() => window.location.href = '/schemes'}
+              className="bg-primary hover:bg-primary-hover text-white px-8 py-3 text-lg"
+            >
               Find Schemes For You
               <ArrowRight className="ml-2 h-5 w-5" />
             </Button>
@@ -104,7 +135,11 @@ const Index = () => {
           
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
             {categories.map((category, index) => (
-              <Card key={index} className="text-center hover:shadow-md transition-shadow cursor-pointer group border-primary/10">
+              <Card 
+                key={index} 
+                className="text-center hover:shadow-md transition-shadow cursor-pointer group border-primary/10"
+                onClick={() => window.location.href = `/schemes?category=${encodeURIComponent(category.name)}`}
+              >
                 <CardContent className="p-6">
                   <div className="text-4xl mb-3">{category.icon}</div>
                   <h3 className="font-semibold text-primary group-hover:text-primary-hover mb-2">
@@ -170,28 +205,51 @@ const Index = () => {
                 <CardTitle className="text-primary">Quick Contact</CardTitle>
                 <CardDescription>Send us a message and we'll get back to you</CardDescription>
               </CardHeader>
-              <CardContent className="space-y-4">
-                <div className="grid md:grid-cols-2 gap-4">
-                  <div>
-                    <label className="text-sm font-medium mb-1 block">Name</label>
-                    <input className="w-full p-2 border border-primary/20 rounded focus:outline-none focus:border-primary" />
+              <CardContent>
+                <form onSubmit={handleContactSubmit} className="space-y-4">
+                  <div className="grid md:grid-cols-2 gap-4">
+                    <div>
+                      <label className="text-sm font-medium mb-1 block">Name *</label>
+                      <input 
+                        required
+                        value={contactForm.name}
+                        onChange={(e) => setContactForm({...contactForm, name: e.target.value})}
+                        className="w-full p-2 border border-primary/20 rounded focus:outline-none focus:border-primary" 
+                      />
+                    </div>
+                    <div>
+                      <label className="text-sm font-medium mb-1 block">Phone</label>
+                      <input 
+                        value={contactForm.phone}
+                        onChange={(e) => setContactForm({...contactForm, phone: e.target.value})}
+                        className="w-full p-2 border border-primary/20 rounded focus:outline-none focus:border-primary" 
+                      />
+                    </div>
                   </div>
                   <div>
-                    <label className="text-sm font-medium mb-1 block">Phone</label>
-                    <input className="w-full p-2 border border-primary/20 rounded focus:outline-none focus:border-primary" />
+                    <label className="text-sm font-medium mb-1 block">Email *</label>
+                    <input 
+                      type="email" 
+                      required
+                      value={contactForm.email}
+                      onChange={(e) => setContactForm({...contactForm, email: e.target.value})}
+                      className="w-full p-2 border border-primary/20 rounded focus:outline-none focus:border-primary" 
+                    />
                   </div>
-                </div>
-                <div>
-                  <label className="text-sm font-medium mb-1 block">Email</label>
-                  <input type="email" className="w-full p-2 border border-primary/20 rounded focus:outline-none focus:border-primary" />
-                </div>
-                <div>
-                  <label className="text-sm font-medium mb-1 block">Message</label>
-                  <textarea rows={4} className="w-full p-2 border border-primary/20 rounded focus:outline-none focus:border-primary resize-none" />
-                </div>
-                <Button className="w-full bg-primary hover:bg-primary-hover">
-                  Send Message
-                </Button>
+                  <div>
+                    <label className="text-sm font-medium mb-1 block">Message *</label>
+                    <textarea 
+                      rows={4} 
+                      required
+                      value={contactForm.message}
+                      onChange={(e) => setContactForm({...contactForm, message: e.target.value})}
+                      className="w-full p-2 border border-primary/20 rounded focus:outline-none focus:border-primary resize-none" 
+                    />
+                  </div>
+                  <Button type="submit" className="w-full bg-primary hover:bg-primary-hover">
+                    Send Message
+                  </Button>
+                </form>
               </CardContent>
             </Card>
           </div>
@@ -212,10 +270,10 @@ const Index = () => {
             <div>
               <h4 className="font-semibold mb-4">Quick Links</h4>
               <ul className="space-y-2 text-sm text-white/80">
-                <li><a href="#" className="hover:text-white">Find Schemes</a></li>
-                <li><a href="#" className="hover:text-white">How it Works</a></li>
+                <li><a href="/schemes" className="hover:text-white">Find Schemes</a></li>
+                <li><a href="/#how-it-works" className="hover:text-white">How it Works</a></li>
                 <li><a href="#" className="hover:text-white">FAQs</a></li>
-                <li><a href="#" className="hover:text-white">Contact Us</a></li>
+                <li><a href="/contact" className="hover:text-white">Contact Us</a></li>
               </ul>
             </div>
             

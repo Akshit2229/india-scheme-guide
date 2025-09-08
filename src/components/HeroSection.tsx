@@ -1,9 +1,22 @@
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Search, ArrowRight } from "lucide-react";
 import heroBanner from "@/assets/hero-banner.jpg";
 
 const HeroSection = () => {
+  const [searchTerm, setSearchTerm] = useState("");
+  const navigate = useNavigate();
+
+  const handleHeroSearch = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (searchTerm.trim()) {
+      navigate(`/schemes?search=${encodeURIComponent(searchTerm.trim())}`);
+    } else {
+      navigate('/schemes');
+    }
+  };
   return (
     <section className="relative bg-gradient-to-r from-primary via-primary-hover to-success min-h-[500px] flex items-center overflow-hidden">
       {/* Background Pattern */}
@@ -35,18 +48,20 @@ const HeroSection = () => {
             </div>
 
             {/* Search Bar */}
-            <div className="bg-white rounded-lg p-2 flex gap-2 max-w-md">
+            <form onSubmit={handleHeroSearch} className="bg-white rounded-lg p-2 flex gap-2 max-w-md">
               <div className="relative flex-1">
                 <Input
                   placeholder="Search schemes..."
+                  value={searchTerm}
+                  onChange={(e) => setSearchTerm(e.target.value)}
                   className="border-0 bg-transparent focus:ring-0 text-gray-700"
                 />
                 <Search className="absolute right-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
               </div>
-              <Button className="bg-primary hover:bg-primary-hover">
+              <Button type="submit" className="bg-primary hover:bg-primary-hover">
                 <ArrowRight className="h-4 w-4" />
               </Button>
-            </div>
+            </form>
 
             {/* Stats */}
             <div className="grid grid-cols-3 gap-4 pt-6">

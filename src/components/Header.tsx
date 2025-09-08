@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Search, Menu, X } from "lucide-react";
@@ -7,6 +7,16 @@ import logo from "@/assets/logo.png";
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [searchTerm, setSearchTerm] = useState("");
+  const navigate = useNavigate();
+
+  const handleSearch = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (searchTerm.trim()) {
+      navigate(`/schemes?search=${encodeURIComponent(searchTerm.trim())}`);
+      setSearchTerm("");
+    }
+  };
 
   return (
     <header className="bg-white shadow-sm border-b">
@@ -41,13 +51,17 @@ const Header = () => {
 
           {/* Search bar - Desktop */}
           <div className="hidden md:flex items-center gap-4 flex-1 max-w-md mx-8">
-            <div className="relative flex-1">
+            <form onSubmit={handleSearch} className="relative flex-1">
               <Input
                 placeholder="Enter scheme name to search..."
+                value={searchTerm}
+                onChange={(e) => setSearchTerm(e.target.value)}
                 className="pl-10 pr-4 py-2 border-primary/20 focus:border-primary"
               />
-              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
-            </div>
+              <button type="submit" className="absolute right-3 top-1/2 transform -translate-y-1/2">
+                <Search className="h-4 w-4 text-muted-foreground hover:text-primary" />
+              </button>
+            </form>
           </div>
 
           {/* Auth buttons - Desktop */}
@@ -77,13 +91,17 @@ const Header = () => {
         {isMenuOpen && (
           <div className="md:hidden mt-4 pb-4 border-t pt-4">
             <div className="space-y-4">
-              <div className="relative">
+              <form onSubmit={handleSearch} className="relative">
                 <Input
                   placeholder="Enter scheme name to search..."
+                  value={searchTerm}
+                  onChange={(e) => setSearchTerm(e.target.value)}
                   className="pl-10 pr-4 py-2"
                 />
-                <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
-              </div>
+                <button type="submit" className="absolute right-3 top-1/2 transform -translate-y-1/2">
+                  <Search className="h-4 w-4 text-muted-foreground hover:text-primary" />
+                </button>
+              </form>
               <div className="flex gap-3">
                 <Link to="/login" className="flex-1">
                   <Button variant="outline" size="sm" className="w-full border-primary text-primary hover:bg-primary hover:text-white">
