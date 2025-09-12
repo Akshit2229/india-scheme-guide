@@ -16,7 +16,7 @@ The Subsidy Eligibility Checker is a user-friendly tool that simplifies the proc
 * **Dynamic questionnaire**: Adapts to your inputs to ask only relevant questions.
 * **Instant eligibility results**: Get immediate feedback on subsidy eligibility.
 * **Detailed information**: Provides comprehensive details about each subsidy.
-* **Responsive design**: Works seamlessly on desktops, tablets, and mobile devices.
+* **Responsive design**: Works seamlessly on desktops, tablets and mobile devices.
 
 ---
 
@@ -60,7 +60,7 @@ You need to have `npm` installed on your machine.
 
 ## **Contributing** 🤝
 
-Contributions are what make the open-source community such an amazing place to learn, inspire, and create. Any contributions you make are **greatly appreciated**.
+Contributions are what make the open-source community such an amazing place to learn, inspire and create. Any contributions you make are **greatly appreciated**.
 
 1.  Fork the Project
 2.  Create your Feature Branch (`git checkout -b feature/AmazingFeature`)
@@ -75,4 +75,4 @@ Contributions are what make the open-source community such an amazing place to l
 Distributed under the MIT License. See `LICENSE` for more information.
 ***
 
-*This README was generated based on the repository's file structure and the project's apparent purpose. You can, and should, edit this README to better fit your project's specific details and needs.*
+*This README was generated based on the repository's file structure and the project's apparent purpose. You can and should edit this README to better fit your project's specific details and needs.*
