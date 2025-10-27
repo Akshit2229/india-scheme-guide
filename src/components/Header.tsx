@@ -2,13 +2,16 @@ import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Search, Menu, X } from "lucide-react";
+import { Search, Menu, X, LogOut } from "lucide-react";
+import { useAuth } from "@/contexts/AuthContext";
+import { toast } from "sonner";
 import logo from "@/assets/logo.png";
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
   const navigate = useNavigate();
+  const { isAuthenticated, user, logout } = useAuth();
 
   const handleSearch = (e: React.FormEvent) => {
     e.preventDefault();
@@ -16,6 +19,12 @@ const Header = () => {
       navigate(`/schemes?search=${encodeURIComponent(searchTerm.trim())}`);
       setSearchTerm("");
     }
+  };
+
+  const handleLogout = () => {
+    logout();
+    toast.success("Logged out successfully!");
+    navigate("/");
   };
 
   return (
@@ -66,16 +75,33 @@ const Header = () => {
 
           {/* Auth buttons - Desktop */}
           <div className="hidden md:flex items-center gap-3">
-            <Link to="/login">
-              <Button variant="outline" size="sm" className="border-primary text-primary hover:bg-primary hover:text-white">
-                Sign In
-              </Button>
-            </Link>
-            <Link to="/register">
-              <Button size="sm" className="bg-primary hover:bg-primary-hover">
-                Register
-              </Button>
-            </Link>
+            {isAuthenticated ? (
+              <>
+                <span className="text-sm text-muted-foreground">Welcome, {user?.name}</span>
+                <Button 
+                  variant="outline" 
+                  size="sm"
+                  className="border-primary text-primary hover:bg-primary hover:text-white"
+                  onClick={handleLogout}
+                >
+                  <LogOut className="h-4 w-4 mr-2" />
+                  Logout
+                </Button>
+              </>
+            ) : (
+              <>
+                <Link to="/login">
+                  <Button variant="outline" size="sm" className="border-primary text-primary hover:bg-primary hover:text-white">
+                    Sign In
+                  </Button>
+                </Link>
+                <Link to="/register">
+                  <Button size="sm" className="bg-primary hover:bg-primary-hover">
+                    Register
+                  </Button>
+                </Link>
+              </>
+            )}
           </div>
 
           {/* Mobile menu button */}
@@ -102,17 +128,37 @@ const Header = () => {
                   <Search className="h-4 w-4 text-muted-foreground hover:text-primary" />
                 </button>
               </form>
-              <div className="flex gap-3">
-                <Link to="/login" className="flex-1">
-                  <Button variant="outline" size="sm" className="w-full border-primary text-primary hover:bg-primary hover:text-white">
-                    Sign In
-                  </Button>
-                </Link>
-                <Link to="/register" className="flex-1">
-                  <Button size="sm" className="w-full bg-primary hover:bg-primary-hover">
-                    Register
-                  </Button>
-                </Link>
+              <div className="space-y-2">
+                {isAuthenticated ? (
+                  <>
+                    <div className="text-sm text-muted-foreground mb-2">Welcome, {user?.name}</div>
+                    <Button 
+                      variant="outline" 
+                      size="sm"
+                      className="w-full border-primary text-primary hover:bg-primary hover:text-white"
+                      onClick={() => {
+                        handleLogout();
+                        setIsMenuOpen(false);
+                      }}
+                    >
+                      <LogOut className="h-4 w-4 mr-2" />
+                      Logout
+                    </Button>
+                  </>
+                ) : (
+                  <div className="flex gap-3">
+                    <Link to="/login" className="flex-1" onClick={() => setIsMenuOpen(false)}>
+                      <Button variant="outline" size="sm" className="w-full border-primary text-primary hover:bg-primary hover:text-white">
+                        Sign In
+                      </Button>
+                    </Link>
+                    <Link to="/register" className="flex-1" onClick={() => setIsMenuOpen(false)}>
+                      <Button size="sm" className="w-full bg-primary hover:bg-primary-hover">
+                        Register
+                      </Button>
+                    </Link>
+                  </div>
+                )}
               </div>
             </div>
           </div>
