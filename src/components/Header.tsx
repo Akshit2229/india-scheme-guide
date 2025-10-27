@@ -21,8 +21,8 @@ const Header = () => {
     }
   };
 
-  const handleLogout = () => {
-    logout();
+  const handleLogout = async () => {
+    await logout();
     toast.success("Logged out successfully!");
     navigate("/");
   };
@@ -77,7 +77,7 @@ const Header = () => {
           <div className="hidden md:flex items-center gap-3">
             {isAuthenticated ? (
               <>
-                <span className="text-sm text-muted-foreground">Welcome, {user?.name}</span>
+                <span className="text-sm text-muted-foreground">Welcome, {user?.email?.split('@')[0]}</span>
                 <Button 
                   variant="outline" 
                   size="sm"
@@ -131,7 +131,7 @@ const Header = () => {
               <div className="space-y-2">
                 {isAuthenticated ? (
                   <>
-                    <div className="text-sm text-muted-foreground mb-2">Welcome, {user?.name}</div>
+                    <div className="text-sm text-muted-foreground mb-2">Welcome, {user?.email?.split('@')[0]}</div>
                     <Button 
                       variant="outline" 
                       size="sm"
