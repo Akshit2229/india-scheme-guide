@@ -1,11 +1,10 @@
 import { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Eye, EyeOff, ArrowLeft } from "lucide-react";
-import { useAuth } from "@/contexts/AuthContext";
 import { toast } from "sonner";
 import Header from "@/components/Header";
 
@@ -13,10 +12,8 @@ const Login = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const { login } = useAuth();
-  const navigate = useNavigate();
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     
     if (!email || !password) {
@@ -24,15 +21,8 @@ const Login = () => {
       return;
     }
 
-    const { error } = await login(email, password);
-    
-    if (error) {
-      toast.error(error.message || "Invalid email or password");
-      return;
-    }
-
-    toast.success("Logged in successfully!");
-    navigate("/schemes");
+    // Authentication removed - this page is no longer functional
+    toast.info("Authentication has been disabled");
   };
 
   return (
