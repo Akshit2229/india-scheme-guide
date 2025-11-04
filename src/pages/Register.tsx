@@ -1,5 +1,5 @@
-import { useState } from "react";
-import { Link } from "react-router-dom";
+import { useState, useEffect } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -8,11 +8,13 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Checkbox } from "@/components/ui/checkbox";
 import { Eye, EyeOff, ArrowLeft, CheckCircle } from "lucide-react";
 import { toast } from "sonner";
+import { useAuth } from "@/contexts/AuthContext";
 import Header from "@/components/Header";
 
 const Register = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   const [formData, setFormData] = useState({
     fullName: "",
     email: "",
@@ -25,6 +27,14 @@ const Register = () => {
     agreeTerms: false,
     agreePrivacy: false
   });
+  const { signUp, user } = useAuth();
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (user) {
+      navigate("/");
+    }
+  }, [user, navigate]);
 
   const indianStates = [
     "Andhra Pradesh", "Arunachal Pradesh", "Assam", "Bihar", "Chhattisgarh", 
@@ -34,10 +44,10 @@ const Register = () => {
     "Telangana", "Tripura", "Uttar Pradesh", "Uttarakhand", "West Bengal"
   ];
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
-    if (!formData.email || !formData.password) {
+    if (!formData.email || !formData.password || !formData.fullName) {
       toast.error("Please fill in all required fields");
       return;
     }
@@ -52,8 +62,17 @@ const Register = () => {
       return;
     }
 
-    // Authentication removed - this page is no longer functional
-    toast.info("Authentication has been disabled");
+    setIsLoading(true);
+    const { error } = await signUp(formData.email, formData.password, formData.fullName);
+    setIsLoading(false);
+
+    if (error) {
+      toast.error(error.message || "Failed to create account");
+      return;
+    }
+
+    toast.success("Account created successfully!");
+    navigate("/");
   };
 
   const handleInputChange = (field: string, value: string | boolean) => {
@@ -287,10 +306,10 @@ const Register = () => {
                 <Button 
                   type="submit" 
                   className="w-full bg-primary hover:bg-primary-hover text-white font-medium py-3"
-                  disabled={!formData.agreeTerms || !formData.agreePrivacy}
+                  disabled={!formData.agreeTerms || !formData.agreePrivacy || isLoading}
                 >
                   <CheckCircle className="h-4 w-4 mr-2" />
-                  Create Account
+                  {isLoading ? "Creating Account..." : "Create Account"}
                 </Button>
               </form>
 

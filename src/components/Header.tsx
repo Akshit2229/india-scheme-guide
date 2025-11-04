@@ -1,13 +1,15 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Search, Menu, X } from "lucide-react";
+import { Search, Menu, X, LogIn, UserPlus, LogOut, User } from "lucide-react";
+import { useAuth } from "@/contexts/AuthContext";
 import logo from "@/assets/logo.png";
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
+  const { user, signOut } = useAuth();
   const navigate = useNavigate();
 
   const handleSearch = (e: React.FormEvent) => {
@@ -64,6 +66,36 @@ const Header = () => {
             </form>
           </div>
 
+          {/* Auth buttons - Desktop */}
+          <div className="hidden md:flex items-center gap-2">
+            {user ? (
+              <>
+                <Button variant="ghost" size="sm" className="gap-2">
+                  <User className="h-4 w-4" />
+                  Profile
+                </Button>
+                <Button variant="outline" size="sm" onClick={signOut} className="gap-2">
+                  <LogOut className="h-4 w-4" />
+                  Logout
+                </Button>
+              </>
+            ) : (
+              <>
+                <Link to="/login">
+                  <Button variant="ghost" size="sm" className="gap-2">
+                    <LogIn className="h-4 w-4" />
+                    Login
+                  </Button>
+                </Link>
+                <Link to="/register">
+                  <Button variant="default" size="sm" className="gap-2">
+                    <UserPlus className="h-4 w-4" />
+                    Register
+                  </Button>
+                </Link>
+              </>
+            )}
+          </div>
 
           {/* Mobile menu button */}
           <button
@@ -89,6 +121,37 @@ const Header = () => {
                   <Search className="h-4 w-4 text-muted-foreground hover:text-primary" />
                 </button>
               </form>
+              
+              {/* Auth buttons - Mobile */}
+              <div className="flex flex-col gap-2 pt-2">
+                {user ? (
+                  <>
+                    <Button variant="ghost" size="sm" className="gap-2 w-full justify-start">
+                      <User className="h-4 w-4" />
+                      Profile
+                    </Button>
+                    <Button variant="outline" size="sm" onClick={signOut} className="gap-2 w-full justify-start">
+                      <LogOut className="h-4 w-4" />
+                      Logout
+                    </Button>
+                  </>
+                ) : (
+                  <>
+                    <Link to="/login" className="w-full">
+                      <Button variant="ghost" size="sm" className="gap-2 w-full justify-start">
+                        <LogIn className="h-4 w-4" />
+                        Login
+                      </Button>
+                    </Link>
+                    <Link to="/register" className="w-full">
+                      <Button variant="default" size="sm" className="gap-2 w-full justify-start">
+                        <UserPlus className="h-4 w-4" />
+                        Register
+                      </Button>
+                    </Link>
+                  </>
+                )}
+              </div>
             </div>
           </div>
         )}
