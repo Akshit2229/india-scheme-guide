@@ -70,10 +70,12 @@ const Header = () => {
           <div className="hidden md:flex items-center gap-2">
             {user ? (
               <>
-                <Button variant="ghost" size="sm" className="gap-2">
-                  <User className="h-4 w-4" />
-                  Profile
-                </Button>
+                <Link to="/profile">
+                  <Button variant="ghost" size="sm" className="gap-2">
+                    <User className="h-4 w-4" />
+                    Profile
+                  </Button>
+                </Link>
                 <Button variant="outline" size="sm" onClick={signOut} className="gap-2">
                   <LogOut className="h-4 w-4" />
                   Logout
@@ -126,10 +128,12 @@ const Header = () => {
               <div className="flex flex-col gap-2 pt-2">
                 {user ? (
                   <>
-                    <Button variant="ghost" size="sm" className="gap-2 w-full justify-start">
-                      <User className="h-4 w-4" />
-                      Profile
-                    </Button>
+                    <Link to="/profile" className="w-full">
+                      <Button variant="ghost" size="sm" className="gap-2 w-full justify-start">
+                        <User className="h-4 w-4" />
+                        Profile
+                      </Button>
+                    </Link>
                     <Button variant="outline" size="sm" onClick={signOut} className="gap-2 w-full justify-start">
                       <LogOut className="h-4 w-4" />
                       Logout
