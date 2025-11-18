@@ -21,7 +21,8 @@
       "applicationProcess": "Online registration through PM-KISAN portal or through Common Service Centers",
       "department": "Ministry of Agriculture & Farmers Welfare",
       "launchYear": 2018,
-      "status": "Active"
+      "status": "Active",
+      "officialUrl": "https://pmkisan.gov.in/"
     },
     {
       "id": "ayushman-bharat",
@@ -44,7 +45,8 @@
       "applicationProcess": "Beneficiaries can get their eligibility checked and cards made at hospitals or through Common Service Centers",
       "department": "Ministry of Health and Family Welfare",
       "launchYear": 2018,
-      "status": "Active"
+      "status": "Active",
+      "officialUrl": "https://pmjay.gov.in/"
     },
     {
       "id": "beti-bachao-beti-padhao",
@@ -67,7 +69,8 @@
       "applicationProcess": "Applications can be made through banks, post offices or online portals",
       "department": "Ministry of Women and Child Development",
       "launchYear": 2015,
-      "status": "Active"
+      "status": "Active",
+      "officialUrl": "https://wcd.nic.in/bbbp-schemes"
     },
     {
       "id": "pmay-urban",
@@ -90,7 +93,8 @@
       "applicationProcess": "Online application through PMAY-U portal or offline through implementing agencies",
       "department": "Ministry of Housing and Urban Affairs",
       "launchYear": 2015,
-      "status": "Active"
+      "status": "Active",
+      "officialUrl": "https://pmaymis.gov.in/"
     },
     {
       "id": "mnrega",
@@ -113,7 +117,8 @@
       "applicationProcess": "Apply through Gram Panchayat or MGNREGA portal",
       "department": "Ministry of Rural Development",
       "launchYear": 2005,
-      "status": "Active"
+      "status": "Active",
+      "officialUrl": "https://nrega.nic.in/"
     },
     {
       "id": "atal-pension-yojana",
@@ -137,7 +142,8 @@
       "applicationProcess": "Apply through banks or online portals",
       "department": "Ministry of Finance",
       "launchYear": 2015,
-      "status": "Active"
+      "status": "Active",
+      "officialUrl": "https://npscra.nsdl.co.in/scheme-details.php"
     },
     {
       "id": "sarva-shiksha-abhiyan",
@@ -157,33 +163,37 @@
         "Address Proof",
         "Caste Certificate (if applicable)"
       ],
-      "applicationProcess": "Enrollment through local schools or education department",
+      "applicationProcess": "Admission through nearest government or government-aided school",
       "department": "Ministry of Education",
       "launchYear": 2001,
-      "status": "Active"
+      "status": "Active",
+      "officialUrl": "https://www.education.gov.in/"
     },
     {
-      "id": "accessible-india",
-      "title": "Accessible India Campaign",
+      "id": "disability-pension",
+      "title": "Indira Gandhi National Disability Pension Scheme",
       "category": "Disability",
-      "description": "Making India accessible for persons with disabilities",
-      "fullDescription": "The Accessible India Campaign (Sugamya Bharat Abhiyan) is a nationwide flagship campaign for achieving universal accessibility for persons with disabilities.",
+      "description": "Financial assistance for persons with disabilities",
+      "fullDescription": "The scheme provides financial assistance to persons with severe or multiple disabilities. It is a part of National Social Assistance Programme implemented by Ministry of Rural Development.",
       "eligibility": [
-        "Persons with disabilities",
-        "Organizations working for persons with disabilities",
-        "Public and private institutions"
+        "Persons with 80% or more disability",
+        "Age between 18-79 years",
+        "BPL category",
+        "Not receiving pension from any other scheme"
       ],
-      "benefits": "Accessibility improvements in built environment, transportation, and ICT ecosystem",
+      "benefits": "Monthly pension ranging from Rs. 300 to Rs. 500",
       "documents": [
         "Disability Certificate",
         "Aadhaar Card",
-        "Address Proof",
-        "Medical Reports"
+        "BPL Certificate",
+        "Bank Account Details",
+        "Age Proof"
       ],
-      "applicationProcess": "Applications through disability welfare departments or online portals",
+      "applicationProcess": "Apply through District Social Welfare Office or online portal",
       "department": "Ministry of Social Justice and Empowerment",
-      "launchYear": 2015,
-      "status": "Active"
+      "launchYear": 2009,
+      "status": "Active",
+      "officialUrl": "https://nsap.nic.in/"
     }
   ]
 }

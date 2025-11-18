@@ -1,18 +1,34 @@
 import { useState, useEffect } from "react";
-import { useSearchParams, Link } from "react-router-dom";
+import { useSearchParams, Link, useNavigate } from "react-router-dom";
 import Header from "@/components/Header";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { Search, Filter, ArrowRight } from "lucide-react";
+import { Search, Filter, ArrowRight, Home } from "lucide-react";
+import { useAuth } from "@/contexts/AuthContext";
+import { useToast } from "@/hooks/use-toast";
 import schemesData from "@/data/schemes.json";
 
 const Schemes = () => {
   const [searchParams] = useSearchParams();
+  const navigate = useNavigate();
+  const { user } = useAuth();
+  const { toast } = useToast();
   const categoryParam = searchParams.get("category");
   const searchParam = searchParams.get("search");
+
+  useEffect(() => {
+    if (!user) {
+      toast({
+        title: "Authentication Required",
+        description: "Please login to view schemes",
+        variant: "destructive"
+      });
+      navigate("/login");
+    }
+  }, [user, navigate, toast]);
 
   const [schemes, setSchemes] = useState(schemesData.schemes);
   const [filteredSchemes, setFilteredSchemes] = useState(schemesData.schemes);
@@ -51,6 +67,17 @@ const Schemes = () => {
       <Header />
       
       <div className="container mx-auto px-4 py-8">
+        {/* Back to Home Button */}
+        <Link to="/">
+          <Button 
+            variant="ghost" 
+            className="mb-6 text-primary hover:bg-primary/10"
+          >
+            <Home className="h-4 w-4 mr-2" />
+            Back to Home
+          </Button>
+        </Link>
+        
         {/* Header Section */}
         <div className="text-center mb-8">
           <h1 className="text-3xl lg:text-4xl font-bold text-primary mb-4">

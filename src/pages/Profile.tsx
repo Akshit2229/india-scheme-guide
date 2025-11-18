@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { useAuth } from "@/contexts/AuthContext";
 import { supabase } from "@/integrations/supabase/client";
 import Header from "@/components/Header";
@@ -10,7 +10,7 @@ import { Label } from "@/components/ui/label";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { toast } from "sonner";
-import { Loader2, User, Mail, Calendar } from "lucide-react";
+import { Loader2, User, Mail, Calendar, Home } from "lucide-react";
 
 const Profile = () => {
   const { user } = useAuth();
@@ -111,6 +111,17 @@ const Profile = () => {
       <Header />
       
       <main className="container mx-auto px-4 py-8 max-w-4xl">
+        {/* Back to Home Button */}
+        <Link to="/">
+          <Button 
+            variant="ghost" 
+            className="mb-4 text-primary hover:bg-primary/10"
+          >
+            <Home className="h-4 w-4 mr-2" />
+            Back to Home
+          </Button>
+        </Link>
+        
         <div className="mb-6">
           <h1 className="text-3xl font-bold text-foreground mb-2">My Profile</h1>
           <p className="text-muted-foreground">Manage your account information</p>
