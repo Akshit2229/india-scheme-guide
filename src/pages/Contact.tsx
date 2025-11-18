@@ -1,10 +1,11 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import Header from "@/components/Header";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import { Phone, Mail, Clock, MapPin } from "lucide-react";
+import { Phone, Mail, Clock, MapPin, Home } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 
 const Contact = () => {
@@ -41,6 +42,17 @@ const Contact = () => {
       <Header />
       
       <div className="container mx-auto px-4 py-8">
+        {/* Back to Home Button */}
+        <Link to="/">
+          <Button 
+            variant="ghost" 
+            className="mb-6 text-primary hover:bg-primary/10"
+          >
+            <Home className="h-4 w-4 mr-2" />
+            Back to Home
+          </Button>
+        </Link>
+        
         {/* Header Section */}
         <div className="text-center mb-12">
           <h1 className="text-3xl lg:text-4xl font-bold text-primary mb-4">

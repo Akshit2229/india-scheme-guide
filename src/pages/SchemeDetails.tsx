@@ -1,17 +1,31 @@
 import { useParams, Link, useNavigate } from "react-router-dom";
+import { useEffect } from "react";
 import Header from "@/components/Header";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
-import { ArrowLeft, CheckCircle, FileText, Users, Calendar, Building, ExternalLink } from "lucide-react";
+import { ArrowLeft, CheckCircle, FileText, Users, Calendar, Building, ExternalLink, Home } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
+import { useAuth } from "@/contexts/AuthContext";
 import schemesData from "@/data/schemes.json";
 
 const SchemeDetails = () => {
   const { id } = useParams();
   const navigate = useNavigate();
   const { toast } = useToast();
+  const { user } = useAuth();
+  
+  useEffect(() => {
+    if (!user) {
+      toast({
+        title: "Authentication Required",
+        description: "Please login to view scheme details",
+        variant: "destructive"
+      });
+      navigate("/login");
+    }
+  }, [user, navigate, toast]);
   
   const scheme = schemesData.schemes.find(s => s.id === id);
 
@@ -31,10 +45,19 @@ const SchemeDetails = () => {
   }
 
   const handleApplyNow = () => {
-    toast({
-      title: "Application Started",
-      description: `Application process initiated for ${scheme.title}. You will be redirected to the official portal.`,
-    });
+    if (scheme.officialUrl) {
+      window.open(scheme.officialUrl, '_blank');
+      toast({
+        title: "Redirecting to Official Portal",
+        description: `Opening ${scheme.title} application portal in a new tab.`,
+      });
+    } else {
+      toast({
+        title: "Portal Not Available",
+        description: "Official portal link is not available for this scheme.",
+        variant: "destructive"
+      });
+    }
   };
 
   return (
@@ -42,15 +65,26 @@ const SchemeDetails = () => {
       <Header />
       
       <div className="container mx-auto px-4 py-8">
-        {/* Back Button */}
-        <Button 
-          variant="ghost" 
-          onClick={() => navigate(-1)}
-          className="mb-6 text-primary hover:bg-primary/10"
-        >
-          <ArrowLeft className="h-4 w-4 mr-2" />
-          Back to Schemes
-        </Button>
+        {/* Back Buttons */}
+        <div className="flex gap-2 mb-6">
+          <Button 
+            variant="ghost" 
+            onClick={() => navigate(-1)}
+            className="text-primary hover:bg-primary/10"
+          >
+            <ArrowLeft className="h-4 w-4 mr-2" />
+            Back
+          </Button>
+          <Link to="/">
+            <Button 
+              variant="ghost"
+              className="text-primary hover:bg-primary/10"
+            >
+              <Home className="h-4 w-4 mr-2" />
+              Home
+            </Button>
+          </Link>
+        </div>
 
         <div className="grid lg:grid-cols-3 gap-8">
           {/* Main Content */}
