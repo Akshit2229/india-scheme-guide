@@ -19,16 +19,6 @@ const Schemes = () => {
   const categoryParam = searchParams.get("category");
   const searchParam = searchParams.get("search");
 
-  useEffect(() => {
-    if (!user) {
-      toast({
-        title: "Authentication Required",
-        description: "Please login to view schemes",
-        variant: "destructive"
-      });
-      navigate("/login");
-    }
-  }, [user, navigate, toast]);
 
   const [schemes, setSchemes] = useState(schemesData.schemes);
   const [filteredSchemes, setFilteredSchemes] = useState(schemesData.schemes);
