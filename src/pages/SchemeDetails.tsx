@@ -16,16 +16,6 @@ const SchemeDetails = () => {
   const { toast } = useToast();
   const { user } = useAuth();
   
-  useEffect(() => {
-    if (!user) {
-      toast({
-        title: "Authentication Required",
-        description: "Please login to view scheme details",
-        variant: "destructive"
-      });
-      navigate("/login");
-    }
-  }, [user, navigate, toast]);
   
   const scheme = schemesData.schemes.find(s => s.id === id);
 
